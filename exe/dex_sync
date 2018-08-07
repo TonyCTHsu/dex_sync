@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+
+require 'dex_sync'
+
+config = DexSync::Config.new
+DexSync::UpdateKubeConfigService.new(config).perform

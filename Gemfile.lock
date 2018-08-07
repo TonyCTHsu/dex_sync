@@ -1,0 +1,44 @@
+PATH
+  remote: .
+  specs:
+    dex_sync (0.1.0)
+      faraday (~> 0.14.0)
+      faraday-cookie_jar (~> 0.0.6)
+      faraday_middleware (~> 0.12.2)
+      nokogiri (~> 1.8.2)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    domain_name (0.5.20170404)
+      unf (>= 0.0.5, < 1.0.0)
+    faraday (0.14.0)
+      multipart-post (>= 1.2, < 3)
+    faraday-cookie_jar (0.0.6)
+      faraday (>= 0.7.4)
+      http-cookie (~> 1.0.0)
+    faraday_middleware (0.12.2)
+      faraday (>= 0.7.4, < 1.0)
+    http-cookie (1.0.3)
+      domain_name (~> 0.5)
+    mini_portile2 (2.3.0)
+    minitest (5.11.3)
+    multipart-post (2.0.0)
+    nokogiri (1.8.2)
+      mini_portile2 (~> 2.3.0)
+    rake (10.5.0)
+    unf (0.1.4)
+      unf_ext
+    unf_ext (0.0.7.5)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  bundler (~> 1.16)
+  dex_sync!
+  minitest (~> 5.0)
+  rake (~> 10.0)
+
+BUNDLED WITH
+   1.16.3
