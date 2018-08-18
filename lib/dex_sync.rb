@@ -8,31 +8,35 @@ require 'yaml'
 module DexSync
   class Config
     def initialize
-      @configuration = YAML.safe_load(File.read(File.expand_path('~/dex_sync.yaml')))
+      @config = YAML.safe_load(File.read(File.expand_path('~/dex_sync.yaml')))
     end
 
     def dex
-      @configuration.fetch('DEX')
+      @config.fetch('DEX')
     end
 
-    def github
-      @configuration.fetch('GITHUB')
+    def domain
+      @config.fetch('DOMAIN', 'github.com')
     end
 
     def namespaces
-      @configuration.fetch('NAMESPACES')
+      @config.fetch('NAMESPACES')
+    end
+
+    def download_path
+      @config.fetch('DOWNLOAD_PATH', '~/.kubeconfigs')
     end
 
     def clusters
-      @configuration.fetch('CLUSTERS')
+      @config.fetch('CLUSTERS')
     end
 
     def user_session
-      @configuration.fetch('USER_SESSION')
+      @config.fetch('USER_SESSION')
     end
 
     def gh_session
-      @configuration.fetch('GH_SESSION')
+      @config.fetch('GH_SESSION')
     end
   end
 
@@ -66,11 +70,11 @@ module DexSync
 
           response = connection.post('download', download_params)
 
-          config = YAML.safe_load(response.body)
+          downloaded_config = YAML.safe_load(response.body)
 
-          File.open(File.expand_path("~/.kubeconfigs/#{cluster}-#{namespace}-internal"), 'w') do |f|
-            f.write(config.to_yaml)
-          end
+          expanded_path = File.expand_path(@config.download_path + "/#{cluster}-#{namespace}-internal")
+
+          File.open(expanded_path, 'w') { |f| f.write(downloaded_config.to_yaml) }
         end
       end
     end
@@ -98,7 +102,7 @@ module DexSync
       HTTP::Cookie.new(
         name: 'user_session',
         value: @config.user_session,
-        domain: @config.github,
+        domain: @config.domain,
         path: '/'
       )
     end
@@ -107,7 +111,7 @@ module DexSync
       HTTP::Cookie.new(
         name: '_gh_sess',
         value: @config.gh_session,
-        domain: @config.github,
+        domain: @config.domain,
         path: '/'
       )
     end
