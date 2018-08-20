@@ -14,13 +14,13 @@ DexSync requires some configuration setup at the first time. Keeping `USER_SESSI
 
 * Create dex_sync configuration `dex_sync.yaml`, under home directory.
 
-```
+```bash
 $ touch ~/dex_sync.yaml
 ```
 
 * Create a directory for storing the downloaded configuration.
 
-```
+```bash
 $ mkdir ~/.kubeconfigs
 ```
 
@@ -35,7 +35,7 @@ $ mkdir ~/.kubeconfigs
 
 An example for `dex_sync.yaml`
 
-```
+```yaml
 DEX: http://my-dex-app.com/
 DOWNLOAD_PATH: ~/.kubeconfigs
 CLUSTERS:
@@ -50,7 +50,7 @@ GH_SESSION: QWERTQWERT.....................
 
 * Execute command in terminal to download the configurations.
 
-```
+```bash
 $ dex_sync
 ```
 
@@ -61,7 +61,7 @@ $ dex_sync
 
 * After execution, configurations are downloaded in your designated directory. 
 
-```
+```bash
 $ ls ~/.kubeconfigs
 ```
 
@@ -69,14 +69,14 @@ $ ls ~/.kubeconfigs
 
 In `~/.bashrc`
 
-```
+```bash
 export KUBECONFIG=$KUBECONFIG:$HOME/.kubeconfigs/config-1
 export KUBECONFIG=$KUBECONFIG:$HOME/.kubeconfigs/config-2
 ...
 ..
 ```
 
-```
+```bash
 $ kubectl config get-contexts
 ```
 
