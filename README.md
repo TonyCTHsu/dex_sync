@@ -76,6 +76,16 @@ export KUBECONFIG=$KUBECONFIG:$HOME/.kubeconfigs/config-2
 ..
 ```
 
+or 
+
+```bash
+KUBECONFIG=""
+for i in $HOME/.kubeconfigs/*; do
+  KUBECONFIG="$KUBECONFIG:${i}"
+done
+export KUBECONFIG
+```
+
 ```bash
 $ kubectl config get-contexts
 ```
