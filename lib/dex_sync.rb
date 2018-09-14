@@ -59,7 +59,7 @@ module DexSync
         id_token      = doc.css('form > input[name=id_token]').first['value']
 
         @config.namespaces.each do |namespace|
-          puts("Dowloading config for #{cluster}:#{namespace}")
+          puts("Downloading config for #{cluster}:#{namespace}")
 
           download_params = {
             refresh_token: refresh_token,
